@@ -114,12 +114,11 @@ function retry(func, attempts) {
   let counter = 0;
 
   while (counter < attempts - 1) {
-    counter += 1;
     try {
       const res = func();
       return () => res;
     } catch (e) {
-      console.log(e);
+      counter += 1;
     }
   }
   return () => func();
